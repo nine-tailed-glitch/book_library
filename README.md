@@ -4,4 +4,6 @@
 Ключевые элементы главы (из тех, которые просмотрены / внесены в виде кода на данный момент):
 1. Maven
 1. Spring Boot
+1. Концепт MVC (Model-View-Controller)
+1. Стандарт REST API и CRUD (Create-Read(List)-Update-Delete)
 
