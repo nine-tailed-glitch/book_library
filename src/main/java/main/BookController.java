@@ -3,7 +3,7 @@ package main;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import response.Book;
+import main.model.Book;
 
 import java.util.List;
 
