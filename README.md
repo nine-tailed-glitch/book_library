@@ -6,4 +6,5 @@
 1. Spring Boot
 1. Концепт MVC (Model-View-Controller)
 1. Стандарт REST API и CRUD (Create-Read(List)-Update-Delete)
+1. Request, response и статусы ответов
 
