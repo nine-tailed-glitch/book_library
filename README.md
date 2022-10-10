@@ -8,6 +8,7 @@
 1. Стандарт REST API и CRUD (Create-Read(List)-Update-Delete)
 1. Request, response и статусы ответов
 1. БД (MySQL)
+1. Параметры конфигурации
 
 Заметки:
 1. application.properties игнорится, отслеживание состояний через папку "application properties"
