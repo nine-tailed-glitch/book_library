@@ -1,33 +1,46 @@
 package main;
 
+import main.model.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import main.model.Book;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BookController {
 
-    //@RequestMapping(value = "/books/", method = RequestMethod.GET)
+    @Autowired
+    private BookRepository bookRepository;
+
+//    @RequestMapping(value = "/books/", method = RequestMethod.GET)
     @GetMapping("/books/")
     public List<Book> list() {
-        return Storage.getAlBook();
+        Iterable<Book> bookIterable = bookRepository.findAll();
+        ArrayList<Book> books = new ArrayList<Book>();
+        for (Book book : bookIterable) {
+            books.add(book);
+        }
+        return books;
     }
 
 //    @RequestMapping(value = "/books/", method = RequestMethod.POST)
     @PostMapping("/books/")
     public int add(Book book) {
-        return Storage.addBook(book);
+        Book newBook = bookRepository.save(book);
+        return newBook.getId();
     }
 
     @GetMapping("/books/{id}")
     public ResponseEntity get(@PathVariable int id) {
-        Book book = Storage.getBook(id);
-        if (book == null) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        if (!optionalBook.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        return new ResponseEntity(book, HttpStatus.OK);
+        return new ResponseEntity(optionalBook.get(), HttpStatus.OK);
     }
 }
